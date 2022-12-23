@@ -3,13 +3,15 @@
 import numpy as np
 
 x = np.loadtxt("data.dat")
+x *= 811589153
 indices = list(range(len(x)))
 print(x, indices)
 
-for i, num in enumerate(x):
-    j = indices.index(i)
-    indices.pop(j)
-    indices.insert(int((num + j) % len(indices)), i)
+for _ in range(10):
+    for i, num in enumerate(x):
+        j = indices.index(i)
+        indices.pop(j)
+        indices.insert(int((num + j) % len(indices)), i)
 
 y = x.copy()
 for i, num in enumerate(x):
